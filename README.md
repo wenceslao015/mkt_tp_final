@@ -112,7 +112,7 @@ git push origin main
 **DIAGRAMA DE FACT_SALES_ORDER**
 
 
-![ORDER_ITEM](./assets/fact_sales_order_item_2.png)
+![ORDER_ITEM](./assets/fact_sale_order_item_2.png)
 
 
 **DIAGRAMA DE FACT_SALES_ORDER_ITEM**
