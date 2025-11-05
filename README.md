@@ -93,16 +93,37 @@ git push origin main
 # Relaciónes hechas en mi trabajo
 
 **DIAGRAMA DE NPS_RESPONSE**
+
+
 ![NPS](./assets/fact_nps_response_5.png)
+
+
 **DIAGRAMA DE FACT_PAYMENT**
+
+
 ![PAYMENT](./assets/fact_payment_3.png)
+
+
 **DIAGRAMA DE FACT_SALES_ORDER**
+
+
 ![ORDER_ITEM](./assets/fact_sales_order_item_2.png)
+
+
 **DIAGRAMA DE FACT_SALES_ORDER_ITEM**
+
+
 ![ORDER](./assets/fact_sales_order_1.png)
+
+
 **DIAGRAMA DE FACT_SHIPMENT**
+
+
 ![SHIPMENT](./assets/fact_shipment_4.png)
+
 **DIAGRAMA DE FACT_WEB_SESSION**
+
+
 ![WEB_SESSION](./assets/fact_web_session_6.png)
 
 
