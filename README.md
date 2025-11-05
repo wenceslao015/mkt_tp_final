@@ -134,106 +134,134 @@ git push origin main
 
 # Explicaciones de los hechos y dimensiones:
 
-1. **fact_sales_order (Pedido)**
+## 📊 Tablas de Hechos (Fact Tables)
+
+---
+
+### 1. **fact_sales_order (Pedido)**
 **Registra la cabecera de cada orden y sus montos totales.**
 
-**-id:** PK. Identificador único del pedido.
-**-order_date_id:** FK (Tiempo). Fecha de la orden (une a dim_calendar).
-**-order_time:** Hora exacta en que se creó el pedido.
-**-customer_id:** FK. Cliente que realizó la compra.
-**-shipping_address_id:** FK (Rol Dirección). Dirección de Envío (une a dim_address).
-**-billing_address_id:** FK (Rol Dirección). Dirección de Facturación.
-**-total_amount:** Métrica. Monto total final de la orden (KPI Clave de Ventas).
-**-subtotal, tax_amount, shipping_fee:** Componentes monetarios del total.
-**-status_order:** Estado de la orden.
-**-channel_id, store_id:** FKs para canal y tienda.
+- **id:** PK. Identificador único del pedido.  
+- **order_date_id:** FK (Tiempo). Fecha de la orden (une a dim_calendar).  
+- **order_time:** Hora exacta en que se creó el pedido.  
+- **customer_id:** FK. Cliente que realizó la compra.  
+- **shipping_address_id:** FK (Rol Dirección). Dirección de Envío (une a dim_address).  
+- **billing_address_id:** FK (Rol Dirección). Dirección de Facturación.  
+- **total_amount:** Métrica. Monto total final de la orden (KPI Clave de Ventas).  
+- **subtotal, tax_amount, shipping_fee:** Componentes monetarios del total.  
+- **status_order:** Estado de la orden.  
+- **channel_id, store_id:** FKs para canal y tienda.  
 
-2.**fact_sales_order_item (Ítem del Pedido)**
+---
+
+### 2. **fact_sales_order_item (Ítem del Pedido)**
 **Registra cada línea de producto vendida, permitiendo el análisis granular por producto.**
 
-**-id:** PK. ID único de la línea de ítem.
-**-order_id:** FK. Pedido al que pertenece el ítem (une a fact_sales_order).
-**-product_id:** FK. Producto específico vendido (une a dim_product).
-**-order_date_id:** FK (Tiempo). Fecha de la orden.
-**-quantity:** Métrica. Cantidad de unidades vendidas.
-**-line_total:** Métrica. Monto total de esa línea (después de descuento).
-**-unit_price, discount_amount:** Precio unitario y descuento aplicado.
-**-customer_id, channel_id, store_id:** FKs de contexto.
+- **id:** PK. ID único de la línea de ítem.  
+- **order_id:** FK. Pedido al que pertenece el ítem (une a fact_sales_order).  
+- **product_id:** FK. Producto específico vendido (une a dim_product).  
+- **order_date_id:** FK (Tiempo). Fecha de la orden.  
+- **quantity:** Métrica. Cantidad de unidades vendidas.  
+- **line_total:** Métrica. Monto total de esa línea (después de descuento).  
+- **unit_price, discount_amount:** Precio unitario y descuento aplicado.  
+- **customer_id, channel_id, store_id:** FKs de contexto.  
 
-3.**fact_payment (Pago)**
+---
+
+### 3. **fact_payment (Pago)**
 **Registra el evento de pago asociado a un pedido.**
 
-**-id:** PK. ID único del pago.
-**-paid_at_date_id:** FK (Tiempo). Fecha en que se registró el pago.
-**-paid_at_time:** Hora exacta del pago.
-**-amount:** Métrica. Monto pagado.
-**-method:** Método de pago utilizado (CARD, CASH, GATEWAY).
-**-status_payment:** Estado del pago (PAID, FAILED).
-**-order_id, customer_id, billing_address_id:** FKs de contexto.
+- **id:** PK. ID único del pago.  
+- **paid_at_date_id:** FK (Tiempo). Fecha en que se registró el pago.  
+- **paid_at_time:** Hora exacta del pago.  
+- **amount:** Métrica. Monto pagado.  
+- **method:** Método de pago utilizado (CARD, CASH, GATEWAY).  
+- **status_payment:** Estado del pago (PAID, FAILED).  
+- **order_id, customer_id, billing_address_id:** FKs de contexto.  
 
-4. **fact_shipment (Envío)**
+---
+
+### 4. **fact_shipment (Envío)**
 **Registra la duración del proceso logístico desde el envío hasta la entrega.**
 
-**-id:** PK. ID único del registro de envío.
-**-shipped_at_date_id:** FK (Rol T.). Fecha en que fue enviado.
-**-delivered_at_date_id:** FK (Rol T.). Fecha en que fue entregado.
-**-dias_de_entrega:** Métrica. Duración del envío en días.
-**-carrier:** Empresa de transporte (Correo Argentino, PICKUP).
-**-tracking_number:** Código de seguimiento.
-**-customer_id, shipping_address_id:** FKs de contexto.
+- **id:** PK. ID único del registro de envío.  
+- **shipped_at_date_id:** FK (Rol T.). Fecha en que fue enviado.  
+- **delivered_at_date_id:** FK (Rol T.). Fecha en que fue entregado.  
+- **dias_de_entrega:** Métrica. Duración del envío en días.  
+- **carrier:** Empresa de transporte (Correo Argentino, PICKUP).  
+- **tracking_number:** Código de seguimiento.  
+- **customer_id, shipping_address_id:** FKs de contexto.  
 
-5. **fact_nps_response (Respuesta NPS)**
+---
+
+### 5. **fact_nps_response (Respuesta NPS)**
 **Registra la puntuación de lealtad del cliente para calcular el KPI de NPS.**
 
-**-id:** PK. ID único de la respuesta NPS.
-**-responded_at_date_id:** FK (Tiempo). Fecha en que se envió la respuesta.
-**-score:** Métrica. Puntuación NPS (0-10).
-**-customer_id, channel_id:** FKs de contexto.
+- **id:** PK. ID único de la respuesta NPS.  
+- **responded_at_date_id:** FK (Tiempo). Fecha en que se envió la respuesta.  
+- **score:** Métrica. Puntuación NPS (0-10).  
+- **customer_id, channel_id:** FKs de contexto.  
 
-6. **fact_web_session (Sesión Web)**
+---
+
+### 6. **fact_web_session (Sesión Web)**
 **Registra la actividad online de los usuarios para medir usuarios activos y tráfico.**
 
-**-id:** PK. ID único de la sesión.
-**-started_at_date_id:** FK (Rol T.). Fecha de inicio de la sesión.
-**-ended_at_date_id:** FK (Rol T.). Fecha de fin de la sesión.
-**-source:** Fuente de tráfico (ads, direct, social).
-**-device:** Dispositivo utilizado (desktop, mobile).
-**-customer_id:** FK. Cliente asociado (puede ser nulo si es anónimo).
+- **id:** PK. ID único de la sesión.  
+- **started_at_date_id:** FK (Rol T.). Fecha de inicio de la sesión.  
+- **ended_at_date_id:** FK (Rol T.). Fecha de fin de la sesión.  
+- **source:** Fuente de tráfico (ads, direct, social).  
+- **device:** Dispositivo utilizado (desktop, mobile).  
+- **customer_id:** FK. Cliente asociado (puede ser nulo si es anónimo).  
 
-**📐 Tablas de Dimensión (Dimension Tables)**
+---
+
+## 📐 Tablas de Dimensión (Dimension Tables)
 **Estas tablas proporcionan los atributos que describen el contexto (quién, qué, dónde, cuándo).**
 
-1. **dim_calendar (o dim_date)**
-**-id:** PK. Clave subrogada de fecha (usada como FK en todos los hechos).
-**-date:** La fecha completa.
-**-year, month, day_name, quarter:** Atributos para agrupar y filtrar por tiempo.
+---
 
-2.**dim_customer**
-**-id:** PK. Clave subrogada del cliente.
-**-customer_key:** Clave natural (ID de origen).
-**-first_name, last_name:** Atributos descriptivos del cliente.
-**-email, phone:** Datos de contacto.
-**-status:** Estado del cliente.
+### 1. **dim_calendar (o dim_date)**
+- **id:** PK. Clave subrogada de fecha (usada como FK en todos los hechos).  
+- **date:** La fecha completa.  
+- **year, month, day_name, quarter:** Atributos para agrupar y filtrar por tiempo.  
 
-3. **dim_product**
-**-id:** PK. Clave subrogada del producto.
-**-sku, product_key:** Códigos de identificación.
-**-name:** Nombre del producto.
-**-category_name:** Categoría principal (ej. Classic, Sport).
-**-list_price:** Precio de lista original.
+---
 
-4. **dim_address**
-**-id:** PK. Clave subrogada de la dirección.
-**-line1, city, postal_code:** Componentes de la dirección.
-**-province_name:** Nombre de la provincia (clave para el KPI de Ventas por Provincia).
+### 2. **dim_customer**
+- **id:** PK. Clave subrogada del cliente.  
+- **customer_key:** Clave natural (ID de origen).  
+- **first_name, last_name:** Atributos descriptivos del cliente.  
+- **email, phone:** Datos de contacto.  
+- **status:** Estado del cliente.  
 
-5. **dim_channel**
-**-id:** PK. Clave subrogada del canal.
-**-code:** Código corto (ONLINE, OFFLINE).
-**name:** Nombre descriptivo (Tienda Online, Tiendas Físicas).
+---
 
-6. **dim_store**
-**-id:** PK. Clave subrogada de la tienda.
-**-name:** Nombre de la tienda física.
-**-city, province_name:** Ubicación de la tienda.
-**-address_id:** Dirección física de la tienda (FK a dim_address).
+### 3. **dim_product**
+- **id:** PK. Clave subrogada del producto.  
+- **sku, product_key:** Códigos de identificación.  
+- **name:** Nombre del producto.  
+- **category_name:** Categoría principal (ej. Classic, Sport).  
+- **list_price:** Precio de lista original.  
+
+---
+
+### 4. **dim_address**
+- **id:** PK. Clave subrogada de la dirección.  
+- **line1, city, postal_code:** Componentes de la dirección.  
+- **province_name:** Nombre de la provincia (clave para el KPI de Ventas por Provincia).  
+
+---
+
+### 5. **dim_channel**
+- **id:** PK. Clave subrogada del canal.  
+- **code:** Código corto (ONLINE, OFFLINE).  
+- **name:** Nombre descriptivo (Tienda Online, Tiendas Físicas).  
+
+---
+
+### 6. **dim_store**
+- **id:** PK. Clave subrogada de la tienda.  
+- **name:** Nombre de la tienda física.  
+- **city, province_name:** Ubicación de la tienda.  
+- **address_id:** Dirección física de la tienda (FK a dim_address).  
