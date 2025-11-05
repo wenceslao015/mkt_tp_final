@@ -16,10 +16,15 @@ El objetivo de este proyecto es diseñar e implementar un mini-ecosistema de Dat
 El modelo de datos desarrollado soporta el cálculo de los siguientes indicadores de desempeño:
 
 **KPIDefiniciónTotal Ventas**: ($M)Suma de total_amount (status: PAID o FULFILLED), filtrable por canal y período.
+
 **Usuarios Activos**: (nK)Conteo de customer_id distintos en web_session por período.
+
 **Ticket Promedio**: ($K)SUM(total_amount) / COUNT(pedidos) (mismo filtro que Ventas).
+
 **NPS**: (Net Promoter Score)((% Detractores) - (% Promotores)) * 100 sobre nps_response.
+
 **Ventas por Provincia**: Agrupación de total_amount por la provincia de la dirección de envío (shipping_address_id).
+
 **Ranking Ventas por Producto**:Agrupación de line_total de ítems por product_id y mes.
 
 ---
