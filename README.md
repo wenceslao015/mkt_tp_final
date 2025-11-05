@@ -268,7 +268,7 @@ git push origin main
 
 
 
-
+---
 
 # AUTOR:
-## **Wenceslao Tejerina**
+## **Wenceslao Tejerina**🖌️🎨
