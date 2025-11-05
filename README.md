@@ -265,3 +265,10 @@ git push origin main
 - **name:** Nombre de la tienda física.  
 - **city, province_name:** Ubicación de la tienda.  
 - **address_id:** Dirección física de la tienda (FK a dim_address).  
+
+
+
+
+
+# AUTOR:
+## **Wenceslao Tejerina**
