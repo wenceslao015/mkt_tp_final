@@ -12,6 +12,11 @@ El objetivo de este proyecto es diseñar e implementar un mini-ecosistema de Dat
 
 ---
 
+**[Ver Tablero interactivo en Power BI](https://app.powerbi.com/groups/59cfed65-541d-494d-9275-65b4217642b3/reports/70ddc7ff-05b1-4569-97ae-211bb2fb9d3a/6ca4f5194b2bf8fed2b4?experience=power-bi)**
+
+
+
+---
 ## 📈 **KPIs Clave Soportados**
 El modelo de datos desarrollado soporta el cálculo de los siguientes indicadores de desempeño:
 
